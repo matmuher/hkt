@@ -1,23 +1,34 @@
-# Stage 0, "build-stage", based on Node.js, to build and compile the frontend
-FROM node:20 AS build-stage
+FROM node:21-slim as builder
 
 WORKDIR /app
 
 COPY package*.json /app/
 
-RUN npm install
+RUN npm ci
 
 COPY ./ /app/
 
-ARG VITE_API_URL=${VITE_API_URL}
+ARG FRONTEND_ENV=production
+ARG VITE_BACKEND_API_URL
+ARG VITE_PWD_SIGNUP_ENABLED
+ARG VITE_GA_TRACKING_ID
+
+ENV VITE_APP_ENV=${FRONTEND_ENV}
+
+# Comment out the next line to disable tests
+# RUN npm run test:unit
 
 RUN npm run build
 
 
-# Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
-FROM nginx:1
+FROM nginx:1.23.1
 
-COPY --from=build-stage /app/dist/ /usr/share/nginx/html
+# Remove default nginx configuration
+RUN rm /etc/nginx/conf.d/*
 
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./nginx-backend-not-found.conf /etc/nginx/extra-conf.d/backend-not-found.conf
+# Remove default nginx static assets
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy built app and nginx conf
+COPY --from=builder /app/dist/ /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d
