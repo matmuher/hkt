@@ -1,19 +1,15 @@
-FROM python:3.12-slim
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
 
-ENV PYTHONUNBUFFERED=true
+# Set the working directory in the container
+WORKDIR /code
 
-WORKDIR /app
+# Copy the current directory contents into the container at /code
+COPY ./app /code/app
+COPY requirements.txt /code/
 
-### install poetry
-RUN pip install poetry && poetry config virtualenvs.in-project true
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-### install dependencies and project
-ADD pyproject.toml README.md ./
-ADD app /app/app
-RUN poetry install --no-interaction --no-ansi
-
-### add executables to path
-ENV PATH="/app/.venv/bin:$PATH"
-
-### default cmd: run fastapi with 4 workers
-CMD ["fastapi", "run", "--workers", "4", "app/main.py"]
+# Run app.py when the container launches
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]

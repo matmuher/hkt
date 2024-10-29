@@ -1,0 +1,28 @@
+
+
+
+users = """
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL UNIQUE
+);
+"""
+
+books = """
+CREATE TABLE IF NOT EXISTS books (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  user_id INTEGER,
+  FOREIGN KEY (user_id) REFERENCES users (id)
+);
+"""
+
+notes = """
+CREATE TABLE IF NOT EXISTS notes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  txt TEXT NOT NULL,
+  book_id INTEGER,
+  FOREIGN KEY (book_id) REFERENCES books (id)
+);
+"""
