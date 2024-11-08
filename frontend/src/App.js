@@ -7,7 +7,46 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import './App.css';
 
+async function makePostRequest(url, data) {
+  try {
+    // Set the request method to POST
+    const response = await fetch(url, {
+      method: 'POST',
+      // Convert the data to JSON
+      body: JSON.stringify(data),
+      // Set the Content-Type header
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    // Check if the request was successful
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Parse the JSON response
+    const result = await response.json();
+    console.log('Success:', result);
+
+    return result;
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error.message);
+    throw error;
+  }
+}
+
 const App = () => {
+
+  // Usage example
+  const url = 'http://0.0.0.0:80/search';
+  const data = { "session_id": "value"};
+
+  makePostRequest(url, data)
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
+
+
   const [searchTerm, setSearchTerm] = useState('');
   const [categories, setCategories] = useState(['Football', 'Volleyball', 'Floorball', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
 
@@ -57,7 +96,6 @@ const App = () => {
     document.body.style.overflowY = 'hidden';
   };
 
-
   const searchResults = [
     { id: 1, title: 'Football' },
     { id: 2, title: 'Volleyball' },
@@ -73,6 +111,11 @@ const App = () => {
 
   return (
     <div className="app-container">
+      {/* Image */}
+      <div>
+        <img src='logo.svg'/>
+      </div>
+
       {/* Search Bar */}
       <div className="search-bar" >
         <button>
@@ -88,7 +131,6 @@ const App = () => {
           />
         </span>
       </div>
-
    
       {/* Search Area and Categories Container */}
       <div className="search-category-container">
@@ -119,17 +161,3 @@ const App = () => {
 };
 
 export default App;
-
-// const App = () => (
-//   <Router>
-//       <div>
-//         <Routes>
-//           <Route path="/" element={<UsersRenderer />} />
-//           <Route path="/profile/:user/:userId" element={<UserProfileRenderer/>} />
-//           <Route path="/book/:book/:bookId" element={<BookInfo />} />
-//         </Routes>
-//       </div>
-//     </Router>
-// );
-
-// export default App;
