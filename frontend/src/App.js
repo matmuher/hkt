@@ -108,7 +108,11 @@ const App = () => {
                                                 'Техника',
                                                 'Настольные игры',
                                                 'Цветы',
-                                                'Путешествия']);
+                                                'Путешествия',
+                                                'Супермаркеты',
+                                                'Дом и ремонт',
+                                                'Заправки',
+                                                'Аптеки']);
 
   const [isMiniWindowOpen, setIsMiniWindowOpen] = useState(false);
 
@@ -189,7 +193,16 @@ const App = () => {
         {/* Category Area */}
         <div className="category-area">
           {categories.map((category, index) => (
-            <div key={index} className="category-button"> <p> {category} </p></div>
+            <div
+            key={index}
+            className="category-button"
+            onClick={() => {
+            setSearchTerm(category);
+            handleSearch()
+            }}
+          >
+            <p>{category}</p>
+          </div>
           ))}
         </div>
 
