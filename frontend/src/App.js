@@ -68,12 +68,20 @@ const App = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const searchData = await response.json();
-        const resizedImages = await Promise.all(
+
+        const resizedCashbackLogos = await Promise.all(
           searchData.map(async (result) => await handleImageResize(result.image))
         );
+
+        const resizedBankLogos = await Promise.all(
+          searchData.map(async (result) => await handleImageResize(result.bank_image))
+        );
+
         setSearchResults(searchData.map((result, index) => ({
-          ...result,
-          resizedImage: resizedImages[index],
+          header: result.header,
+          description: result.description,
+          cashback_logo: resizedCashbackLogos[index],
+          bank_logo: resizedBankLogos[index]
         })));
       } catch (error) {
         console.error('Error fetching or resizing images:', error);
@@ -195,7 +203,7 @@ const App = () => {
             }}>
               {/* Left Logo */}
               <div className='left-logo'>
-                <img src={result.resizedImage}/>
+                <img src={result.cashback_logo}/>
               </div>
 
               {/* Card Header */}
@@ -205,7 +213,7 @@ const App = () => {
 
               {/* Right Logo */}
               <div className='right-logo'>
-                <img src={`${result.resizedImage}`} />
+                <img src={`${result.bank_logo}`} />
               </div>
             </div>
           ))}
