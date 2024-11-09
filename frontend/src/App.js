@@ -91,7 +91,7 @@ const App = () => {
     document.body.style.overflowY = '';
   };
 
-  const openMiniWindow = (description, x, y) => {
+  const openMiniWindow = (description) => {
     setIsMiniWindowOpen(true);
     const miniWindow = document.createElement('div');
     miniWindow.className = 'mini-window';
@@ -99,23 +99,27 @@ const App = () => {
       <style>
         .mini-window {
           position: fixed;
-          top: ${y}px;
-          left: ${x}px;
-          transform: translate(-50%, -50%);
-          padding: 20px;
-          border-radius: 5px;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-          z-index: 9999;
+          top: 18%;
+          left: 37%;
+          right: 25%;
+          bottom: 38%;
+          font-size: 24px; 
+          display: flex;
+          justify-content: center;
+          align-items: center; 
         }
         .close-btn {
           position: absolute;
           top: 10px;
           right: 10px;
           cursor: pointer;
+          width: 40px;
+          height: 40px;
+          font-size: 24px; 
         }
       </style>
       <p>${description}</p>
-      <button class="close-btn">Close</button>
+      <button class="close-btn">X</button>
     `;
 
     document.body.appendChild(miniWindow);
@@ -164,7 +168,7 @@ const App = () => {
             <div key={result.description} className="result-box-area"  style={{position: 'relative'}}
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
-              openMiniWindow(result.description, (rect.left + rect.right)/2, (rect.bottom + rect.top)/2);
+              openMiniWindow(result.description);
             }}>
               {/* Left Logo */}
               <div className='left-logo'>
