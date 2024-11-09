@@ -42,10 +42,13 @@ const App = () => {
   const url = 'http://0.0.0.0:80/search';
   const data = { "session_id": "value"};
 
+  const [testImage, setTestImage] = useState('');
+
   makePostRequest(url, data)
-  .then(result => console.log(result))
+  .then(result => {setTestImage(result[0].image);})
   .catch(error => console.error(error));
 
+  console.log(testImage)
 
   const [searchTerm, setSearchTerm] = useState('');
   const [categories, setCategories] = useState(['Football', 'Volleyball', 'Floorball', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
@@ -113,7 +116,7 @@ const App = () => {
     <div className="app-container">
       {/* Image */}
       <div>
-        <img src='logo.svg'/>
+        <img src={`data:image/jpeg;base64,${testImage}`} />
       </div>
 
       {/* Search Bar */}
