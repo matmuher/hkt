@@ -82,7 +82,12 @@ const App = () => {
   }, []);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [categories, setCategories] = useState(['Football', 'Volleyball', 'Floorball', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
+  const [categories, setCategories] = useState(['Продукты',
+                                                'Одежда',
+                                                'Техника',
+                                                'Настольные игры',
+                                                'Цветы',
+                                                'Путешествия']);
 
   const [isMiniWindowOpen, setIsMiniWindowOpen] = useState(false);
 
