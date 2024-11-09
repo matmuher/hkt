@@ -41,6 +41,9 @@ function resizeBase64Image(base64String, maxWidth = 30, maxHeight = 30) {
 
 const App = () => {
 
+  const BACKEND_URL = 'http://0.0.0.0:80';
+  const [session_id, setSessionId] = useState('123456789');
+
   const handleImageResize = async (imageBase64) => {
     try {
       const resizedImage = await resizeBase64Image(imageBase64);
@@ -54,9 +57,9 @@ const App = () => {
 
   const requestCashbacks = async (request) => {
       try {
-        const url = 'http://0.0.0.0:80/search';
+        const search_url = `${BACKEND_URL}/search`;
         const data = request;
-        const response = await fetch(url, {
+        const response = await fetch(search_url, {
           method: 'POST',
           body: JSON.stringify(data),
           headers: { 'Content-Type': 'application/json' },
@@ -77,8 +80,17 @@ const App = () => {
       }
     };
 
+  /* Initial Data Fetch */
+  useEffect(() => {
+    const fetchData = async () => {
+      const defaultRequest = { "session_id": session_id};
+      await requestCashbacks(defaultRequest);
+    };
+    fetchData();
+  }, []);
+  
   const handleSearch = async () => {
-    const request = { "session_id": "123456789", "text": searchTerm }; // Adjust request data as needed
+    const request = { "session_id": session_id, "text": searchTerm };
     await requestCashbacks(request);
   };
 
