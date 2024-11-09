@@ -1,5 +1,5 @@
 
-
+DB_PATH = './open_api.sqlite'
 
 sessions_info = """
 CREATE TABLE IF NOT EXISTS users (

@@ -24,7 +24,7 @@ def handle_search_request(req: Search):
         return {"error": err}
 
     try:
-        return search.search()
+        return search.search(req.session_id, req.text)
     except Exception as e:
         return {'error': e}
 

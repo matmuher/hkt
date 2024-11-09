@@ -1,12 +1,13 @@
 import base64
+import utils.utils as utils
+from utils.utils import get_base64_encoded_image
+from PIL import Image
 import logging
-
 tbank_image_path = 'mock_images/tbank.jpg'
 ya_pay_image_path = 'mock_images/ya_pay.jpg'
 
-def get_base64_encoded_image(file_name: str) -> bytes:
-    with open(file_name, 'rb') as fin:
-        return base64.b64encode(fin.read())
+logger = logging.getLogger("search logger")
+
 
 def mock_search():
     base64_tbank_image = get_base64_encoded_image(tbank_image_path)
@@ -30,6 +31,11 @@ def mock_search():
     return result
 
 
-def search():
-    return mock_search()
+def search(session: str, text):
+    res = mock_search()
+
+    if text is not None and len(text) > 0:
+        res = utils.filter_response(text, res)
+
+    return res
 
