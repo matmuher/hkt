@@ -5,13 +5,12 @@ FROM python:3.8-slim
 WORKDIR /code
 
 # Copy the current directory contents into the container at /code
-COPY ./app /code/app
+COPY ./main.py /code/main.py
 COPY ./models /code/models
 COPY ./search /code/search
 COPY ./mock_images /code/mock_images
 COPY ./db /code/db
 COPY ./utils /code/utils
-COPY ./test_module /code/test_module
 
 COPY requirements.txt /code/
 
@@ -19,4 +18,4 @@ COPY requirements.txt /code/
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 # Run app.py when the container launches
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]

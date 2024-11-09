@@ -1,7 +1,6 @@
 import base64
 import utils.utils as utils
 from utils.utils import get_base64_encoded_image
-from PIL import Image
 import logging
 tbank_image_path = 'mock_images/tbank.jpg'
 ya_pay_image_path = 'mock_images/ya_pay.jpg'
