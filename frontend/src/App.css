@@ -23,7 +23,7 @@
   border-radius: 25px;
 
   margin-left: 20%;
-  margin-right: 30%;
+  margin-right: 20%;
 
   padding-top: 1%;
 
@@ -147,11 +147,16 @@ button {
 }
 
 .mini-window {
+  position: fixed;
+  top: 20%;
+  left: 20%;
+  right: 20%;
+  bottom: 20%;
   background-color: rgb(181, 200, 253);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  border-radius: 5px;
-  width: 200px;
-  height: 80px;
+  overflow: auto;
 }
 
 .close-btn {
