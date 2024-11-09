@@ -1,54 +1,85 @@
-import './App.css';
-import UsersRenderer from './UsersRenderer';
-import UserProfileRenderer from './UserProfileRenderer';
-import BookInfo from './BookInfo';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import './App.css';
 
-async function makePostRequest(url, data) {
-  try {
-    // Set the request method to POST
-    const response = await fetch(url, {
-      method: 'POST',
-      // Convert the data to JSON
-      body: JSON.stringify(data),
-      // Set the Content-Type header
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+function resizeBase64Image(base64String, maxWidth = 30, maxHeight = 30) {
+  const base64Data = base64String;
 
-    // Check if the request was successful
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+  // Create an Image object
+  const img = new Image();
+  img.src = `data:image/png;base64,${base64Data}`;
 
-    // Parse the JSON response
-    const result = await response.json();
-    console.log('Success:', result);
+  return new Promise((resolve, reject) => {
+    img.onload = () => {
+      // Calculate aspect ratio
+      let width = img.width;
+      let height = img.height;
 
-    return result;
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error.message);
-    throw error;
-  }
+      // Maintain aspect ratio
+      if (width > height) {
+        height *= maxWidth / width;
+        width = maxWidth;
+      } else {
+        width *= maxHeight / height;
+        height = maxHeight;
+      }
+
+      // Create canvas
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+
+      // Draw image on canvas
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+
+      // Convert canvas to base64 string
+      resolve(canvas.toDataURL());
+    };
+    img.onerror = reject;
+  });
 }
 
 const App = () => {
 
-  // Usage example
-  const url = 'http://0.0.0.0:80/search';
-  const data = { "session_id": "value"};
+  const handleImageResize = async (imageBase64) => {
+    try {
+      const resizedImage = await resizeBase64Image(imageBase64);
+      return resizedImage;
+    } catch (error) {
+      console.error('Error resizing image:', error);
+    }
+  };
 
-  const [testImage, setTestImage] = useState('');
+  const [searchResults, setSearchResults] = useState([])
 
-  makePostRequest(url, data)
-  .then(result => {setTestImage(result[0].image);})
-  .catch(error => console.error(error));
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = 'http://0.0.0.0:80/search';
+        const data = { "session_id": "123456789" };
+        const response = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const searchData = await response.json();
+        const resizedImages = await Promise.all(
+          searchData.map(async (result) => await handleImageResize(result.image))
+        );
+        setSearchResults(searchData.map((result, index) => ({
+          ...result,
+          resizedImage: resizedImages[index],
+        })));
+      } catch (error) {
+        console.error('Error fetching or resizing images:', error);
+      }
+    };
 
-  console.log(testImage)
+    fetchData();
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [categories, setCategories] = useState(['Football', 'Volleyball', 'Floorball', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
@@ -57,7 +88,7 @@ const App = () => {
 
   const handleClose = () => {
     setIsMiniWindowOpen(false);
-    document.body.style.overflowY = ''; // Re-enable scrolling
+    document.body.style.overflowY = '';
   };
 
   const openMiniWindow = (description, x, y) => {
@@ -99,25 +130,8 @@ const App = () => {
     document.body.style.overflowY = 'hidden';
   };
 
-  const searchResults = [
-    { id: 1, title: 'Football' },
-    { id: 2, title: 'Volleyball' },
-    { id: 3, title: 'Floorball' },
-    { id: 4, title: 'Hockey' },
-    { id: 5, title: 'Backetball' },
-    { id: 6, title: 'Regbi' },
-    { id: 7, title: 'Dance' },
-    { id: 8, title: 'Skating' },
-    { id: 9, title: 'Kerling' },
-    { id: 10, title: 'BobSlay' },
-  ];
-
   return (
     <div className="app-container">
-      {/* Image */}
-      <div>
-        <img src={`data:image/jpeg;base64,${testImage}`} />
-      </div>
 
       {/* Search Bar */}
       <div className="search-bar" >
@@ -146,15 +160,26 @@ const App = () => {
 
         {/* Search Results Area */}
         <div className="search-results-area">
-          {searchResults.filter(result => 
-            !searchTerm || result.title.toLowerCase().includes(searchTerm.toLowerCase())
-          ).map(result => (
-            <div key={result.id} className="result-box"  style={{position: 'relative'}}
+          {searchResults.map(result => (
+            <div key={result.description} className="result-box-area"  style={{position: 'relative'}}
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
-              openMiniWindow(result.id, (rect.left + rect.right)/2, (rect.bottom + rect.top)/2);
+              openMiniWindow(result.description, (rect.left + rect.right)/2, (rect.bottom + rect.top)/2);
             }}>
-              <p>{result.title}</p>
+              {/* Left Logo */}
+              <div className='left-logo'>
+                <img src={result.resizedImage}/>
+              </div>
+
+              {/* Card Header */}
+              <div className='card-header'>
+                <p>{result.header}</p>
+              </div>
+
+              {/* Right Logo */}
+              <div className='right-logo'>
+                <img src={`${result.resizedImage}`} />
+              </div>
             </div>
           ))}
         </div>
