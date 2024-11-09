@@ -52,11 +52,10 @@ const App = () => {
 
   const [searchResults, setSearchResults] = useState([])
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const requestCashbacks = async (request) => {
       try {
         const url = 'http://0.0.0.0:80/search';
-        const data = { "session_id": "123456789" };
+        const data = request;
         const response = await fetch(url, {
           method: 'POST',
           body: JSON.stringify(data),
@@ -78,8 +77,10 @@ const App = () => {
       }
     };
 
-    fetchData();
-  }, []);
+  const handleSearch = async () => {
+    const request = { "session_id": "123456789", "text": searchTerm }; // Adjust request data as needed
+    await requestCashbacks(request);
+  };
 
   const [searchTerm, setSearchTerm] = useState('');
   const [categories, setCategories] = useState(['Продукты',
@@ -140,15 +141,20 @@ const App = () => {
 
       {/* Search Bar */}
       <div className="search-bar" >
-        <button>
-          Filter
+        <button onClick={handleSearch}>
+          Search
         </button>
         <span>
           <input
             type="text"
             placeholder="Search cashbacks..."
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => {setSearchTerm(e.target.value);}}
             value={searchTerm}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSearch();
+              };
+            }}
             width="10%"
           />
         </span>
