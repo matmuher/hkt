@@ -29,12 +29,18 @@ def is_relevant(request: str, cashback: dict):
     request_words = to_lower_case_only_alpha(request)
     cashback_header_words = to_lower_case_only_alpha(cashback["header"])
     cashback_description_words = to_lower_case_only_alpha(cashback["description"])
+    cashback_category_words = []
+    if cashback["category"]:
+        cashback_category_words = to_lower_case_only_alpha(cashback["category"])
 
     for word in request_words:
         for word2 in cashback_header_words:
             if len(word) == len(word2) and word[0:-1] == word2[0:-1]:
                 return True
         for word2 in cashback_description_words:
+            if len(word) == len(word2) and word[0:-1] == word2[0:-1]:
+                return True
+        for word2 in cashback_category_words:
             if len(word) == len(word2) and word[0:-1] == word2[0:-1]:
                 return True
 
