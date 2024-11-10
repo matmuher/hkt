@@ -183,6 +183,7 @@ const App = () => {
           <input
             type="text"
             placeholder="Search cashbacks..."
+            onChange={(e) => {setSearchTerm(e.target.value);}}
             value={searchTerm}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
