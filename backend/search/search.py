@@ -87,6 +87,7 @@ def mock_search():
         {
             'header': '10% на всё',
             'description': 'Кешбэк для всех новых пользователей до 32 октября',
+            'category': 'Супермаркеты',
             'image': base64_ashan_image,
             'bank_image': base64_tbank_image,
             'bic': TBANK_BIK
@@ -94,6 +95,7 @@ def mock_search():
         {
             'header': 'Кешбэк 300 рублей на красное вино',
             'description': 'Всем новым пользователям предоставляется скидка на первый заказ онлайн в сервисе Яндекс.Еда',
+            'category': 'Супермаркеты',
             'image': base64_bristol_image,
             'bank_image': base64_ya_pay_image,
             'bic': YA_PAY_BIK
@@ -101,6 +103,7 @@ def mock_search():
         {
             'header': 'Кешбэк 5% на настольные игры',
             'description': 'Получите кешбэк 5% на настольные игры! Покупайте любимые игры и возвращайте часть потраченных средств, чтобы обновить свою коллекцию',
+            'category': 'Настольные игры',
             'image': base64_detmir_image,
             'bank_image': base64_alpha_image,
             'bic': ALPHA_BIK
@@ -108,6 +111,7 @@ def mock_search():
         {
             'header': 'Кешбэк до 100% на говяжий фарш',
             'description': 'Верните полную стоимость при покупке от двух пачек',
+            'category': 'Продукты',
             'image': base64_farsh_image,
             'bank_image': base64_sber_image,
             'bic': SBER_BIK
@@ -115,6 +119,7 @@ def mock_search():
         {
             'header': 'Кешбэк 15% на овсянку',
             'description': 'Получите кешбэк 15% на овсянку! Наслаждайтесь полезным завтраком и экономьте на покупках',
+            'category': 'Продукты',
             'image': base64_kasha_image,
             'bank_image': base64_vtb_image,
             'bic': VTB_BIK
@@ -122,6 +127,7 @@ def mock_search():
         {
             'header': 'Кешбэк 300 рублей на доставку',
             'description': 'Получите кешбэк 300 рублей на доставку! Заказывайте любимую еду и возвращайте часть средств обратно',
+            'category': 'Супермаркеты',
             'image': base64_kb_image,
             'bank_image': base64_tbank_image,
             'bic': TBANK_BIK
@@ -129,6 +135,7 @@ def mock_search():
         {
             'header': 'Кешбэк 22% на батоны',
             'description': 'Кешбэк 22% на батоны! Покупайте свежие батоны и возвращайте часть средств обратно!',
+            'category': 'Продукты',
             'image': base64_khleb_image,
             'bank_image': base64_ya_pay_image,
             'bic': YA_PAY_BIK
@@ -136,6 +143,7 @@ def mock_search():
         {
             'header': 'Кешбэк 200 рублей на сникерсы',
             'description': 'Кешбэк 200 рублей на сникерсы (при покупке 20 штук)! Наслаждайтесь любимыми сладостями и получайте выгоду от покупок!',
+            'category': 'Супермаркеты',
             'image': base64_lenta_image,
             'bank_image': base64_alpha_image,
             'bic': ALPHA_BIK
@@ -143,6 +151,7 @@ def mock_search():
         {
             'header': 'Кешбэк 5% на красную помаду',
             'description': 'Кешбэк 5% на красную помаду! Придайте своим губам яркий оттенок и получайте выгоду от каждой покупки!',
+            'category': 'Косметика',
             'image': base64_letual_image,
             'bank_image': base64_sber_image,
             'bic': SBER_BIK
@@ -150,6 +159,7 @@ def mock_search():
         {
             'header': 'Кешбэк 100 рублей на туалетную бумагу',
             'description': 'Покупая туалетную бумагу, вы можете сэкономить! Получите кешбэк 100 рублей на эту необходимую продукцию и наслаждайтесь выгодными покупками!',
+            'category': 'Супермаркеты',
             'image': base64_magnit_image,
             'bank_image': base64_vtb_image,
             'bic': VTB_BIK
@@ -157,6 +167,7 @@ def mock_search():
         {
             'header': 'Кешбэк 7% на подсолнечное масло Золотая Семечка',
             'description': 'Покупая подсолнечное масло Золотая Семечка, вы можете вернуть 7% от потраченной суммы. Сделайте свои покупки более выгодными и экономьте на каждом шагу',
+            'category': 'Продукты',
             'image': base64_maslo_image,
             'bank_image': base64_tbank_image,
             'bic': TBANK_BIK
@@ -164,6 +175,7 @@ def mock_search():
         {
             'header': 'Кешбэк 3% на пастеризованное молоко',
             'description': 'При покупке пастеризованного молока вы можете получить кешбэк в размере 3%. Это поможет вам сократить расходы на повседневные продукты',
+            'category': 'Продукты',
             'image': base64_moloko_image,
             'bank_image': base64_ya_pay_image,
             'bic': YA_PAY_BIK
@@ -171,6 +183,7 @@ def mock_search():
         {
             'header': 'Кешбэк 12% на оливковое масло',
             'description': 'При приобретении оливкового масла можно воспользоваться кешбэком в размере 12%. Это отличная возможность снизить затраты на покупку качественных продуктов',
+            'category': 'Продукты',
             'image': base64_olivkovoye_maslo_image,
             'bank_image': base64_alpha_image,
             'bic': ALPHA_BIK
@@ -178,6 +191,7 @@ def mock_search():
         {
             'header': 'Кешбэк 4% на продукцию собственного производства',
             'description': 'При покупке продукции собственного производства вы можете получить кешбэк в размере 4%. Это может стать хорошим способом сэкономить на товарах, которые часто используются в повседневной жизни',
+            'category': 'Супермаркеты',
             'image': base64_perekrestok_image,
             'bank_image': base64_sber_image,
             'bic': SBER_BIK
@@ -185,6 +199,7 @@ def mock_search():
         {
             'header': 'Кешбэк 9% на тушь для ресниц',
             'description': 'Кешбэк в размере 9% доступен на тушь для ресниц. Это отличная возможность не только обновить свою косметичку, но и сэкономить на покупках',
+            'category': 'Косметика',
             'image': base64_podruzhka_image,
             'bank_image': base64_vtb_image,
             'bic': VTB_BIK
@@ -192,6 +207,7 @@ def mock_search():
         {
             'header': 'Кешбэк 6% на помидоры',
             'description': 'Кешбэк в размере 6% предлагается на помидоры. Это замечательный способ поддержать здоровое питание и сэкономить на свежих овощах',
+            'category': 'Продукты',
             'image': base64_pomodoro_image,
             'bank_image': base64_tbank_image,
             'bic': TBANK_BIK
@@ -199,6 +215,7 @@ def mock_search():
         {
             'header': 'Кешбэк 8% на выпечку',
             'description': 'Кешбэк 8% на выпечку – отличный способ насладиться любимыми хлебобулочными изделиями и сэкономить на покупках',
+            'category': 'Супермаркеты',
             'image': base64_pyaterochka_image,
             'bank_image': base64_ya_pay_image,
             'bic': YA_PAY_BIK
@@ -206,6 +223,7 @@ def mock_search():
         {
             'header': 'Кешбэк 2% на крем для рук',
             'description': 'Кешбэк 2% на крем для рук – хорошая возможность ухаживать за кожей и получать небольшую выгоду от покупок',
+            'category': 'Косметика',
             'image': base64_riv_gosh_image,
             'bank_image': base64_alpha_image,
             'bic': ALPHA_BIK
@@ -213,6 +231,7 @@ def mock_search():
         {
             'header': 'Кешбэк 60% на cахарный песок',
             'description': 'Кешбэк 60% на сахарный песок – отличная возможность сэкономить на покупке этого необходимого продукта',
+            'category': 'Супермаркеты',
             'image': base64_sahar_image,
             'bank_image': base64_sber_image,
             'bic': SBER_BIK
@@ -220,6 +239,7 @@ def mock_search():
         {
             'header': 'Кешбэк 13% на сметану',
             'description': 'Кешбэк 13% на сметану – хороший способ сэкономить на покупке этого вкусного и полезного продукта',
+            'category': 'Продукты',
             'image': base64_smetana_image,
             'bank_image': base64_vtb_image,
             'bic': VTB_BIK
@@ -227,6 +247,7 @@ def mock_search():
         {
             'header': 'Кешбэк 80% на сочни с творогом',
             'description': 'Кешбэк 80% на сочни с творогом – это замечательная возможность насладиться вкусной выпечкой и значительно сэкономить на покупке! Не упустите шанс побаловать себя и своих близких!',
+            'category': 'Продукты',
             'image': base64_sochen_image,
             'bank_image': base64_tbank_image,
             'bic': TBANK_BIK
@@ -234,6 +255,7 @@ def mock_search():
         {
             'header': 'Кешбэк 200 рублей на спаржу',
             'description': 'Кешбэк 200 рублей на спаржу – отличное предложение для любителей этого полезного овоща! Это не только возможность сэкономить, но и шанс добавить в свой рацион вкусное и питательное блюдо.',
+            'category': 'Супермаркеты',
             'image': base64_spar_image,
             'bank_image': base64_ya_pay_image,
             'bic': YA_PAY_BIK
@@ -241,6 +263,7 @@ def mock_search():
         {
             'header': 'Кешбэк 40% на творог',
             'description': 'Кешбэк 40% на творог – отличная возможность приобрести этот полезный продукт и сэкономить! Творог богат белком и кальцием, что делает его прекрасным выбором для здорового питания. Не упустите шанс воспользоваться этим предложением!',
+            'category': 'Продукты',
             'image': base64_tvorog_image,
             'bank_image': base64_alpha_image,
             'bic': ALPHA_BIK
@@ -248,6 +271,7 @@ def mock_search():
         {
             'header': 'Кешбэк 350 рублей на водку',
             'description': 'Кешбэк 350 рублей на водку – это заманчивое предложение для тех, кто планирует покупку этого напитка. Однако всегда стоит помнить о разумном потреблении алкоголя',
+            'category': 'Продукты',
             'image': base64_vinlab_image,
             'bank_image': base64_sber_image,
             'bic': SBER_BIK
@@ -255,6 +279,7 @@ def mock_search():
         {
             'header': 'Кешбэк 12% на фрукты',
             'description': 'Кешбэк 12% на фрукты – это отличная возможность сэкономить на покупке свежих и полезных продуктов! Фрукты богаты витаминами и минералами, и их стоит включать в свой рацион',
+            'category': 'Супермаркеты',
             'image': base64_vkusvill_image,
             'bank_image': base64_vtb_image,
             'bic': VTB_BIK
@@ -262,6 +287,7 @@ def mock_search():
         {
             'header': 'Кешбэк 9% на яйца С0',
             'description': 'Кешбэк 9% на яйца — это хорошая возможность сэкономить на покупке этого полезного продукта. Яйца являются отличным источником белка и других питательных веществ',
+            'category': 'Супермаркеты',
             'image': base64_yayica_image,
             'bank_image': base64_tbank_image,
             'bic': TBANK_BIK
@@ -269,6 +295,7 @@ def mock_search():
         {
             'header': 'Кешбэк 700 рублей на средства для ухода за волосами',
             'description': 'Кешбэк 700 рублей на средства для ухода за волосами — это отличная возможность сэкономить на продуктах, которые помогут поддерживать здоровье и красоту ваших волос. Вы можете использовать этот кешбэк для покупки шампуней, кондиционеров, масок или стайлинговых средств',
+            'category': 'Косметика',
             'image': base64_zolotoye_yabloko_image,
             'bank_image': base64_ya_pay_image,
             'bic': YA_PAY_BIK
