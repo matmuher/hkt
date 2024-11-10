@@ -103,11 +103,18 @@ const App = () => {
   };
 
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    if (searchTerm) {
+      handleSearch();
+    }
+  }, [searchTerm]);
+
   const [categories, setCategories] = useState(['Продукты',
                                                 'Одежда',
                                                 'Техника',
                                                 'Настольные игры',
-                                                'Цветы',
+                                                'Косметика',
                                                 'Путешествия',
                                                 'Супермаркеты',
                                                 'Дом и ремонт',
@@ -176,11 +183,10 @@ const App = () => {
           <input
             type="text"
             placeholder="Search cashbacks..."
-            onChange={(e) => {setSearchTerm(e.target.value);}}
             value={searchTerm}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                handleSearch();
+                setSearchTerm(e.target.value);
               };
             }}
             width="10%"
@@ -197,8 +203,7 @@ const App = () => {
             key={index}
             className="category-button"
             onClick={() => {
-            setSearchTerm(category);
-            handleSearch()
+              setSearchTerm(category)
             }}
           >
             <p>{category}</p>
