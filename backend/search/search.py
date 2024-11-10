@@ -37,6 +37,14 @@ VINLAB_IMAGE = 'mock_images/vinlab.png'
 VKUSVILL_IMAGE = 'mock_images/vkusvill.jpg'
 YAYICA_IMAGE = 'mock_images/yayica.png'
 ZOLOTOYE_YABLOKO_IMAGE = 'mock_images/zolotoye_yabloko.png'
+PIDZHAK_IMAGE = 'mock_images/pidzhak.jpg'
+TUFLI_IMAGE = 'mock_images/tufli.jpg'
+IPHONE_IMAGE = 'mock_images/iphone.jpeg'
+PYLESOS_IMAGE = 'mock_images/pylesos.jpg'
+ROSES_IMAGE = 'mock_images/roses.jpg'
+TULIPS_IMAGE = 'mock_images/tulips.jpg'
+AVIASALES_IMAGE = 'mock_images/aviasales.png'
+AVITO_IMAGE = 'mock_images/avito.jpeg'
 
 # банковские идентификаторы
 TBANK_BIK = 00000000
@@ -82,6 +90,14 @@ def mock_search():
     base64_vkusvill_image = get_base64_encoded_image(VKUSVILL_IMAGE)
     base64_yayica_image = get_base64_encoded_image(YAYICA_IMAGE)
     base64_zolotoye_yabloko_image = get_base64_encoded_image(ZOLOTOYE_YABLOKO_IMAGE)
+    base64_pidzhak_image = get_base64_encoded_image(PIDZHAK_IMAGE)
+    base64_tufli_image = get_base64_encoded_image(TUFLI_IMAGE)
+    base64_iphone_image = get_base64_encoded_image(IPHONE_IMAGE)
+    base64_pylesos_image = get_base64_encoded_image(PYLESOS_IMAGE)
+    base64_roses_image = get_base64_encoded_image(ROSES_IMAGE)
+    base64_tulips_image = get_base64_encoded_image(TULIPS_IMAGE)
+    base64_aviasales_image = get_base64_encoded_image(AVIASALES_IMAGE)
+    base64_avito_image = get_base64_encoded_image(PIDZHAK_IMAGE)
 
     result = [
         {
@@ -107,6 +123,38 @@ def mock_search():
             'image': base64_detmir_image,
             'bank_image': base64_alpha_image,
             'bic': ALPHA_BIK
+        },
+        {
+            'header': 'Кешбэк 500 рублей на пиджаки',
+            'description': 'Кешбэк 500 рублей на пиджаки — это отличная возможность обновить свой гардероб! Пиджаки могут быть универсальным элементом одежды, подходящим как для деловых встреч, так и для повседневных выходов',
+            'category': 'Одежда'
+            'image': base64_pidzhak_image,
+            'bank_image': base64_vtb_image,
+            'bic': VTB_BIK
+        },
+        {
+            'header': 'Кешбэк 5% на новый iPhone',
+            'description': 'Кешбэк 5% на новый iPhone — это неплохая возможность сэкономить при покупке одного из самых популярных смартфонов на рынке',
+            'category': 'Техника',
+            'image': base64_farsh_image,
+            'bank_image': base64_sber_image,
+            'bic': SBER_BIK
+        },
+        {
+            'header': 'Кешбэк 20% на розы',
+            'description': 'Кешбэк 20% на розы — это отличная возможность порадовать себя и своих близких, не выходя за рамки бюджета! При покупке роз вы можете вернуть 20% от суммы, что делает каждую покупку более выгодной',
+            'category': 'Цветы',
+            'image': base64_roses_image,
+            'bank_image': base64_vtb_image,
+            'bic': VTB_BIK
+        },
+        {
+            'header': 'Кешбэк 4% на покупку авиабилетов',
+            'description': 'Планируйте свои путешествия с удовольствием и получайте 4% кешбэка на покупку авиабилетов! Наслаждайтесь новыми открытиями и экономьте на своих поездках',
+            'category': 'Путешествия',
+            'image': base64_aviasales_image,
+            'bank_image': base64_tbank_image,
+            'bic': TBANK_BIK
         },
         {
             'header': 'Кешбэк до 100% на говяжий фарш',
@@ -157,10 +205,42 @@ def mock_search():
             'bic': SBER_BIK
         },
         {
+            'header': 'Кешбэк 7% на съём квартиры посуточно',
+            'description': 'Снимайте квартиры посуточно и получайте 7% кешбэка на каждую бронирование! Наслаждайтесь комфортом домашней атмосферы во время ваших поездок и экономьте на проживании',
+            'category': 'Путешествия',
+            'image': base64_avito_image,
+            'bank_image': base64_tbank_image,
+            'bic': TBANK_BIK
+        },
+        {
             'header': 'Кешбэк 100 рублей на туалетную бумагу',
             'description': 'Покупая туалетную бумагу, вы можете сэкономить! Получите кешбэк 100 рублей на эту необходимую продукцию и наслаждайтесь выгодными покупками!',
             'category': 'Супермаркеты',
             'image': base64_magnit_image,
+            'bank_image': base64_vtb_image,
+            'bic': VTB_BIK
+        },
+        {
+            'header': 'Кешбэк 200 рублей на туфли',
+            'description': 'Кешбэк 200 рублей на туфли — это хорошая возможность сэкономить при покупке новой пары обуви! Туфли могут быть как классическими, так и более современными, в зависимости от вашего стиля и предпочтений',
+            'category': 'Одежда',
+            'image': base64_tufli_image,
+            'bank_image': base64_vtb_image,
+            'bic': VTB_BIK
+        },
+        {
+            'header': 'Кешбэк 7% на пылесос',
+            'description': 'Кешбэк 7% на пылесос — это выгодное предложение, позволяющее сэкономить на покупке бытовой техники',
+            'category': 'Техника',
+            'image': base64_pylesos_image,
+            'bank_image': base64_alpha_image,
+            'bic': ALPHA_BIK
+        },
+        {
+            'header': 'Кешбэк 10% на тюльпаны',
+            'description': 'Покупая тюльпаны, вы не только наполняете свой дом яркими красками, но и получаете 10% кешбэка! Подарите себе и своим близким радость весны, сэкономив при этом',
+            'category': 'Цветы',
+            'image': base64_tulips_image,
             'bank_image': base64_vtb_image,
             'bic': VTB_BIK
         },
