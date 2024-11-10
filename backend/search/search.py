@@ -97,7 +97,7 @@ def mock_search():
     base64_roses_image = get_base64_encoded_image(ROSES_IMAGE)
     base64_tulips_image = get_base64_encoded_image(TULIPS_IMAGE)
     base64_aviasales_image = get_base64_encoded_image(AVIASALES_IMAGE)
-    base64_avito_image = get_base64_encoded_image(PIDZHAK_IMAGE)
+    base64_avito_image = get_base64_encoded_image(AVITO_IMAGE)
 
     result = [
         {
@@ -136,7 +136,7 @@ def mock_search():
             'header': 'Кешбэк 5% на новый iPhone',
             'description': 'Кешбэк 5% на новый iPhone — это неплохая возможность сэкономить при покупке одного из самых популярных смартфонов на рынке',
             'category': 'Техника',
-            'image': base64_farsh_image,
+            'image': base64_iphone_image,
             'bank_image': base64_sber_image,
             'bic': SBER_BIK
         },
@@ -311,7 +311,7 @@ def mock_search():
         {
             'header': 'Кешбэк 60% на cахарный песок',
             'description': 'Кешбэк 60% на сахарный песок – отличная возможность сэкономить на покупке этого необходимого продукта',
-            'category': 'Супермаркеты',
+            'category': 'Продукты',
             'image': base64_sahar_image,
             'bank_image': base64_sber_image,
             'bic': SBER_BIK
