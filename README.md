@@ -1,35 +1,18 @@
-# plain-fastapi-react-docker
+# AGGREGATE CASHBACK ACROSS BANKS
 
-This project is a basic setup for a web application using FastAPI and React, containerized with Docker. The backend serves a simple API that communicates with the frontend, which displays data retrieved from the API.
+This app collects peronal cashback proposals across different banks.
+It's possible due to [Open Banking API](https://openbankingrussia.ru/) that give access to banks' data for services like this one.
 
-## Project Structure
+That's how it looks like:
 
-- `backend/`: Contains the FastAPI application.
-  - `app/main.py`: Entry point for the FastAPI application.
-  - `Dockerfile`: Docker configuration for building the backend image.
-  - `requirements.txt`: Python dependencies required by the backend.
-
-- `frontend/`: Contains the React application.
-  - `public/index.html`: HTML template for the React application.
-  - `src/`: React source files including `App.js` and `index.js`.
-  - `Dockerfile`: Docker configuration for building the frontend image.
-  - `package.json`: NPM dependencies and scripts for the frontend.
-
-- `.gitignore`: Specifies intentionally untracked files to ignore.
-- `docker-compose.yml`: Defines and runs multi-container Docker applications.
-- `LICENSE`: The license file.
-- `README.md`: Documentation about this project.
-
-## Requirements
-
-To run this project, you will need Docker and Docker Compose installed on your machine. Installation guides for Docker can be found [here](https://docs.docker.com/get-docker/) and for Docker Compose [here](https://docs.docker.com/compose/install/).
+![Cashback demo](pictures/cashback_demo.gif)
 
 ## Running the Application
 
 1. **Clone the Repository**
    ```bash
-   git clone https://yourrepositoryurl/plain-fastapi-react-docker.git
-   cd plain-fastapi-react-docker
+   git clone https://github.com/Avoca9o/hkt.git
+   cd hkt
    ```
 
 2. **Build and Run the Docker Containers**
@@ -41,12 +24,41 @@ To run this project, you will need Docker and Docker Compose installed on your m
 
 3. **Viewing the Application**
 
-   Open a browser and navigate to `http://localhost:3000/` to view the React application. It should display a message fetched from the FastAPI backend.
+   Open a browser and navigate to `http://localhost:3000/` to view the React application.
 
 ## API Endpoints
 
 The backend server has the following API endpoint:
-- `GET /`: Returns a simple JSON `{ "Hello": "World" }`.
+- `POST /search`
+   - Request body example:
+   ```
+         {
+            'session_id': '42',
+            'text': 'Косметика'
+         }
+   ```
+   - Response body example:  
+   ```
+         [
+            {
+               'header': 'Кешбэк 5% на красную помаду',
+               'description': 'Кешбэк 5% на красную помаду! Придайте своим губам яркий оттенок и получайте выгоду от каждой покупки!',
+               'category': 'Косметика',
+               'image': base64_letual_image,
+               'bank_image': base64_sber_image,
+               'bic': SBER_BIK
+            },
+            {
+               'header': 'Кешбэк 9% на тушь для ресниц',
+               'description': 'Кешбэк в размере 9% доступен на тушь для ресниц. Это отличная возможность не только обновить свою косметичку, но и сэкономить на покупках',
+               'category': 'Косметика',
+               'image': base64_podruzhka_image,
+               'bank_image': base64_vtb_image,
+               'bic': VTB_BIK
+            }
+         ]
+   ```
+
 
 ## Stopping the Application
 
@@ -55,10 +67,3 @@ To stop the application and remove containers, networks, and volumes created by 
 docker-compose down -v
 ```
 
-## Contributing
-
-Contributions to this project are welcome. Please fork the repository and submit a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the `LICENSE` file for details.
